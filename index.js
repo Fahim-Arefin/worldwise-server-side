@@ -56,9 +56,17 @@ app.get("/cities", async (req, res) => {
   res.send(cities);
 });
 
+// get a city
 app.get("/cities/:id", async (req, res) => {
   const { id } = req.params;
   const data = await City.findById(id); //find one city
-  console.log(data);
+  // console.log(data);
   res.send(data);
+});
+
+// delete a city
+app.delete("/cities/:id", async (req, res) => {
+  const { id } = req.params;
+  const deletedCity = await City.findByIdAndDelete(id);
+  res.send(deletedCity);
 });
